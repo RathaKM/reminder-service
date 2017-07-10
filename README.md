@@ -14,6 +14,10 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 | IDE                       | IntelliJ IDEA 14  |
 | Build tool                | Maven 3.0.5       |
 
+## Application Design
+
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/design.png)
+
 ## Reminder Service Resources
 
 | Resource Type                         | Resource URI                                          |    HTTP Method |
