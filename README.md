@@ -38,6 +38,8 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
   - _java -cp ./lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:reminderservdb --dbname.0 reminderservdb_
 - Now, create the table, 'Reminder' by running the TestNG Test file, [_CreateTableTest.java_](../develop/src/test/java/com/reminder/service/integration/CreateTableTest.java)
 
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/hsqldb_server_start.png)
+
 ## How to Consume Resources
 
 There are 2 ways you can consume these resources. 
@@ -46,9 +48,32 @@ There are 2 ways you can consume these resources.
 
 There is a simple jquery based UI implementation to consume these resources. 
 - Load the page using http://localhost:8080
-- Use the buttons by passing required inputs. Please note that there are no validations in place as of now and hence make sure that you pass the right inputs
+- Use the buttons by passing required inputs. Start with creating a Reminder as the DB is empty in the beginning. Please note that there are no validations in place as of now and hence make sure that you pass the right inputs
+
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/reminder_service_ui.png)
 
 ### Using Postman
 
 The resources can be consumed by using below Postman collection
 - https://www.getpostman.com/collections/ea448bb9db05b53e86c2 
+
+#### Create A Reminder
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/create_reminder.png)
+
+#### Update A Reminder
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/update_a_reminder.png)
+
+#### Get A Reminder
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/get_a_reminder.png)
+
+#### Get All Reminder
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/get_all_reminders.png)
+
+#### Filter Reminders By DueDate
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/filter_reminder_by_duedate.png)
+
+#### Filter Reminders By Status
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/filter_reminder_by_status.png)
+
+#### Filter Reminders By DueDate And Status
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/filter_reminder_by_duedate_and_status.png)
