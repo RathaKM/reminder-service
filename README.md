@@ -36,9 +36,10 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 - Install hsqldb 2.4.0
 - Goto the 'hsqldb 2.4.0/hsqldb' folder and run the below command. This will start the server by creating a DB, _'reminderservdb'_
   - _java -cp ./lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:reminderservdb --dbname.0 reminderservdb_
-- Now, create the table, 'Reminder' by running the TestNG Test file, [_CreateTableTest.java_](../develop/src/test/java/com/reminder/service/integration/CreateTableTest.java)
-
+  
 ![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/hsqldb_server_start.png)
+
+- Now, create the table, 'Reminder' by running the TestNG Test file, [_CreateTableTest.java_](../develop/src/test/java/com/reminder/service/integration/CreateTableTest.java)
 
 ## How to Consume Resources
 
