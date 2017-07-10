@@ -12,6 +12,7 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 | Database                  | HSQLDB 2.4.0      |
 | App Server                | Tomcat 7.0.47     |
 | IDE                       | IntelliJ IDEA 14  |
+| Build tool                | Maven 3.0.5       |
 
 ## Reminder Service Resources
 
@@ -30,6 +31,7 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 - Build/Package the project using _mvn install_
 - Start Tomcat and Publish _reminder-service_
 - Test the server by http://localhost:8080. This will show the Reminder Service UI page for consuming these resources. You may get error, if you try any of the resource, as the database setup is not done
+- For a quick deployment you can use the shared [reminder-service-1.0-SNAPSHOT.war](../develop/reminder-service-1.0-SNAPSHOT.war) file, in case you didn't have time or ran into any issues. 
 
 ### Database Setup
 
@@ -78,3 +80,18 @@ The resources can be consumed by using below Postman collection
 
 #### Filter Reminders By DueDate And Status
 ![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/filter_reminder_by_duedate_and_status.png)
+
+
+### Using Rest Client
+We can test the resources using Rest client API. These are available in the test folder [_RestClientTest.java_](../develop/src/test/java/com/reminder/service/integration/RestClientTest.java).
+
+Please make sure that the Application and DB servers are running before running this client.
+
+## How to Run Tests
+
+There are some unit tests added into this repo
+
+### Unit Tests
+
+The unit tests are added mainly for Resource, Service and DAO layers. These tests will be run as part of the _mvn build/install_ command and can also be run by _mvn test_ command
+ 
