@@ -4,19 +4,16 @@ import com.reminder.service.model.Reminder;
 import com.reminder.service.model.Reminders;
 import com.reminder.service.service.ReminderService;
 import com.reminder.service.test.util.TestUtil;
-import com.reminder.service.type.Status;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
 import org.mockito.MockitoAnnotations;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
+
+import static org.mockito.Mockito.when;
 
 /**
  * Test class for ReminderResource

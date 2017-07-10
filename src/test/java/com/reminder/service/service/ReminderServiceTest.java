@@ -4,7 +4,6 @@ import com.reminder.service.dao.ReminderDAO;
 import com.reminder.service.model.Reminder;
 import com.reminder.service.model.Reminders;
 import com.reminder.service.model.ResourceLink;
-import com.reminder.service.resource.ReminderResource;
 import com.reminder.service.test.util.TestUtil;
 import com.reminder.service.type.HttpMethod;
 import com.reminder.service.type.RelValue;
@@ -17,11 +16,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**

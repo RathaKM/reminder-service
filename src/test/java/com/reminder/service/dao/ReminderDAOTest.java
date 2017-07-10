@@ -16,10 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.mockito.Matchers.any;
 
 /**
  * Test class for ReminderDAO
