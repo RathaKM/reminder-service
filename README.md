@@ -45,7 +45,7 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 
 ## How to Consume Resources
 
-There are 2 ways you can consume these resources. 
+There are 3 ways you can consume these resources. They are using simple jquery based UI, using Postman, and using REST client API. 
 
 ### Using UI
 
