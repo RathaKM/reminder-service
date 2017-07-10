@@ -1,8 +1,8 @@
-# Reminder Service
+## Reminder Service
 
 This repo contains working code for a __Reminder service__ and a simple UI for consuming this. 
 
-# Technology Stack
+## Technology Stack
 
 | Description               | Tool/Framework    |
 | --------------------------|-------------------|
@@ -13,7 +13,7 @@ This repo contains working code for a __Reminder service__ and a simple UI for c
 | App Server                | Tomcat 7.0.47     |
 | IDE                       | IntelliJ IDEA 14  |
 
-# Reminder Service Resources
+## Reminder Service Resources
 
 | Resource Type                         | Resource URI                                          |    HTTP Method |
 | --------------------------------------|------------------------------------------------------ |----------------|
@@ -22,33 +22,33 @@ This repo contains working code for a __Reminder service__ and a simple UI for c
 | Get A Reminder                        | /reminder-service/v1/reminders/id                     | GET            |
 | Get Reminders By DueDate and/or Status| /reminder-service/v1/reminders?dueDate=""&status=""   | GET            |
 
-# Project Setup
+## Project Setup
 
-## Service Setup:
+### Service Setup
 
 - Clone/fork this Repo and open/import this Project into IntelliJ or Eclipse
 - Build/Package the project using _mvn install_
 - Start Tomcat and Publish _reminder-service_
 - Test the server by http://localhost:8080. This will show the Reminder Service UI page for consuming these resources. You may get error, if you try any of the resource, as the database setup is not done
 
-## Database Setup:
+### Database Setup
 
 - Install hsqldb 2.4.0
 - Goto the 'hsqldb 2.4.0/hsqldb' folder and run the below command. This will start the server by creating a DB, _'reminderservdb'_
   - _java -cp ./lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:reminderservdb --dbname.0 reminderservdb_
 - Now, create the table, 'Reminder' by running the TestNG Test file, _CreateTableTest.java_
 
-# How to Consume Resources:
+## How to Consume Resources
 
 There are 2 ways you can consume these resources. 
 
-## Using UI
+### Using UI
 
 There is a simple jquery based UI implementation to consume these resources. 
 - Load the page using http://localhost:8080
 - Use the buttons by passing required inputs. Please note that there are no validations in place as of now and hence make sure that you pass the right inputs
 
-## Using Postman
+### Using Postman
 
 The resources can be consumed by using below Postman collection
 - https://www.getpostman.com/collections/ea448bb9db05b53e86c2 
