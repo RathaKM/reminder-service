@@ -9,6 +9,10 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 - Dependency Injection using Spring
 - Input data and Service validation
 - Usage of Persistence framework
+- Testing
+  - Unit Testing
+  - REST Client
+  - Postman
 
 ## Technology Stack
 
