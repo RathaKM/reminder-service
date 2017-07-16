@@ -16,6 +16,7 @@ public interface ReminderMapper {
     final String SELECT_BY_DUE_DATE_AND_STATUS = "SELECT * FROM REMINDER WHERE DUE_DATE = #{dueDate} AND STATUS = #{status}";
     final String UPDATE = "UPDATE REMINDER SET NAME = #{name}, DESCRIPTION = #{description}, DUE_DATE = #{dueDate}, STATUS = #{status} WHERE ID = #{id}";
     final String INSERT = "INSERT INTO REMINDER (NAME, DESCRIPTION, DUE_DATE, STATUS) VALUES (#{name}, #{description}, #{dueDate}, #{status})";
+    final String DELETE = "DELETE FROM REMINDER WHERE ID = #{id}";
 
     /**
      * Returns a Reminder instance from the database based on the filter fields.
@@ -92,4 +93,12 @@ public interface ReminderMapper {
     @Insert(INSERT)
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "ID")
     void insert(Reminder reminder);
+
+
+    /**
+     * Deletes an instance of Reminder in the database.
+     * @param id the id of the Reminder instance to be deleted
+     */
+    @Delete(DELETE)
+    void delete(@Param("id")String id);
 }

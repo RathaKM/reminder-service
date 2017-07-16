@@ -1,13 +1,14 @@
 package com.reminder.service.service;
 
 import com.reminder.service.dao.ReminderDAO;
+import com.reminder.service.exception.ApplicationException;
 import com.reminder.service.model.Reminder;
 import com.reminder.service.model.Reminders;
 import com.reminder.service.model.ResourceLink;
 import com.reminder.service.test.util.TestUtil;
 import com.reminder.service.type.HttpMethod;
 import com.reminder.service.type.RelValue;
-import com.reminder.service.type.Status;
+import com.reminder.service.type.ReminderStatus;
 import com.reminder.service.util.HateoasLinkUtil;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -50,13 +51,13 @@ public class ReminderServiceTest {
     @Test
     public void testAddReminder() {
         //mock values
-        when(inputReminder.getStatus()).thenReturn(Status.DONE);
+        when(inputReminder.getStatus()).thenReturn(ReminderStatus.DONE);
         List<ResourceLink> listResourceLink = HateoasLinkUtil.getHateoasLinkForAdd(RESOURCE_URI, "/1");
         when(inputReminder.getLinks()).thenReturn(listResourceLink);
         //make call
         Reminder actualResponse = reminderService.addReminder(inputReminder);
         //assert response
-        Assert.assertEquals(actualResponse.getStatus(), Status.DONE);
+        Assert.assertEquals(actualResponse.getStatus(), ReminderStatus.DONE);
         Assert.assertEquals(actualResponse.getLinks().size(), 3);
         Assert.assertEquals(actualResponse.getLinks().get(0).getRel(), RelValue.SELF.toString());
         Assert.assertEquals(actualResponse.getLinks().get(1).getHref(), CONTEXT_URI + RESOURCE_URI + "/1");
@@ -64,7 +65,7 @@ public class ReminderServiceTest {
     }
 
     @Test
-    public void testGetAllReminders() {
+    public void testGetAllReminders() throws ApplicationException {
         //mock values
         String dueDate = "";
         String status = null;
@@ -73,7 +74,7 @@ public class ReminderServiceTest {
         Reminders actualResponse = reminderService.getReminders(dueDate, status);
         //assert response
         Assert.assertEquals(actualResponse.getReminderList().size(), 2);
-        Assert.assertEquals(actualResponse.getReminderList().get(0).getStatus(), Status.DONE);
+        Assert.assertEquals(actualResponse.getReminderList().get(0).getStatus(), ReminderStatus.DONE);
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().size(), 2);
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().get(0).getRel(), RelValue.SELF.toString());
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().get(1).getHref(), CONTEXT_URI + RESOURCE_URI + "/1");
@@ -84,7 +85,7 @@ public class ReminderServiceTest {
     }
 
     @Test
-    public void testGetAllRemindersByDueDate() {
+    public void testGetAllRemindersByDueDate() throws ApplicationException {
         //mock values
         String dueDate = "123456789";
         String status = "";
@@ -93,7 +94,7 @@ public class ReminderServiceTest {
         Reminders actualResponse = reminderService.getReminders(dueDate, status);
         //assert response
         Assert.assertEquals(actualResponse.getReminderList().size(), 1);
-        Assert.assertEquals(actualResponse.getReminderList().get(0).getStatus(), Status.DONE);
+        Assert.assertEquals(actualResponse.getReminderList().get(0).getStatus(), ReminderStatus.DONE);
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().size(), 2);
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().get(0).getRel(), RelValue.SELF.toString());
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().get(1).getHref(), CONTEXT_URI + RESOURCE_URI + "/1");
@@ -101,7 +102,7 @@ public class ReminderServiceTest {
     }
 
     @Test
-    public void testGetAllRemindersByStatus() {
+    public void testGetAllRemindersByStatus() throws ApplicationException {
         //mock values
         String dueDate = null;
         String status = "NOT_DONE";
@@ -110,7 +111,7 @@ public class ReminderServiceTest {
         Reminders actualResponse = reminderService.getReminders(dueDate, status);
         //assert response
         Assert.assertEquals(actualResponse.getReminderList().size(), 1);
-        Assert.assertEquals(actualResponse.getReminderList().get(0).getStatus(), Status.NOT_DONE);
+        Assert.assertEquals(actualResponse.getReminderList().get(0).getStatus(), ReminderStatus.NOT_DONE);
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().size(), 2);
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().get(0).getRel(), RelValue.SELF.toString());
         Assert.assertEquals(actualResponse.getReminderList().get(0).getLinks().get(1).getHref(), CONTEXT_URI + RESOURCE_URI + "/2");
@@ -118,7 +119,7 @@ public class ReminderServiceTest {
     }
 
     @Test
-    public void testGetAllRemindersByDueDateAndStatus() {
+    public void testGetAllRemindersByDueDateAndStatus() throws ApplicationException {
         //mock values
         String dueDate = "987654321";
         String status = "NOT_DONE";
@@ -130,19 +131,19 @@ public class ReminderServiceTest {
     }
 
     @Test
-    public void testGetAReminder() {
+    public void testGetAReminder() throws ApplicationException {
         //mock values
         String id = "1";
         when(reminderDAO.selectById(id)).thenReturn(TestUtil.getReminderById(id).get(0));
         //make call
         Reminder actualResponse = reminderService.getReminder(id);
         //assert response
-        Assert.assertEquals(actualResponse.getStatus(), Status.DONE);
+        Assert.assertEquals(actualResponse.getStatus(), ReminderStatus.DONE);
         Assert.assertEquals(actualResponse.getName(), "Travel");
     }
 
     @Test
-    public void testUpdateReminder() {
+    public void testUpdateReminder() throws ApplicationException {
         //mock values
         String id = "1";
         when(inputReminder.getName()).thenReturn("Meeting");

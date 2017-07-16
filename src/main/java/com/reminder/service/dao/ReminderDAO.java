@@ -115,4 +115,19 @@ public class ReminderDAO {
             session.close();
         }
     }
+
+    /**
+     * Deletes an instance of Reminder in the database.
+     * @param id the id of the Reminder instance to be deleted
+     */
+    public void delete(String id){
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            ReminderMapper mapper = session.getMapper(ReminderMapper.class);
+            mapper.delete(id);
+            session.commit();
+        } finally {
+            session.close();
+        }
+    }
 }

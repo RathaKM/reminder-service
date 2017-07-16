@@ -1,5 +1,6 @@
 package com.reminder.service.resource;
 
+import com.reminder.service.exception.ApplicationException;
 import com.reminder.service.model.Reminder;
 import com.reminder.service.model.Reminders;
 import com.reminder.service.service.ReminderService;
@@ -53,7 +54,7 @@ public class ReminderResourceTest {
     }
 
     @Test
-    public void testGetAllReminders() {
+    public void testGetAllReminders() throws ApplicationException {
         //mock values
         String dueDate = "123456789";
         String status = "DONE";
@@ -70,7 +71,7 @@ public class ReminderResourceTest {
     }
 
     @Test
-     public void testGetRemindersByDueDate() {
+     public void testGetRemindersByDueDate() throws ApplicationException {
         //mock values
         String dueDate = "123456789";
         String status = "";
@@ -86,7 +87,7 @@ public class ReminderResourceTest {
     }
 
     @Test
-    public void testGetRemindersByStatus() {
+    public void testGetRemindersByStatus() throws ApplicationException {
         //mock values
         String dueDate = "";
         String status = "DONE";
@@ -102,7 +103,7 @@ public class ReminderResourceTest {
     }
 
     @Test
-    public void testGetRemindersByDueDateAndStatus() {
+    public void testGetRemindersByDueDateAndStatus() throws ApplicationException {
         //mock values
         String dueDate = "123456789";
         String status = "DONE";
@@ -118,7 +119,7 @@ public class ReminderResourceTest {
     }
 
     @Test
-    public void testGetReminder() {
+    public void testGetReminder() throws ApplicationException {
         //mock values
         String id = "1";
         when(reminderService.getReminder(id)).thenReturn(outputReminder);
@@ -132,7 +133,7 @@ public class ReminderResourceTest {
     }
 
     @Test
-    public void testUpdateReminder() {
+    public void testUpdateReminder() throws ApplicationException {
         //mock values
         String id = "1";
         inputReminder.setName("Travel");

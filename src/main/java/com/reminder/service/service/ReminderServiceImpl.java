@@ -1,11 +1,18 @@
 package com.reminder.service.service;
 
 import com.reminder.service.dao.ReminderDAO;
+import com.reminder.service.exception.ApplicationException;
+import com.reminder.service.exception.ExceptionStatusCode;
 import com.reminder.service.model.Reminder;
 import com.reminder.service.model.Reminders;
 import com.reminder.service.type.RelValue;
 import com.reminder.service.util.HateoasLinkUtil;
 
+import javax.inject.Inject;
+import javax.ws.rs.core.Response;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -14,13 +21,13 @@ import java.util.logging.Logger;
 
 public class ReminderServiceImpl implements ReminderService {
 
+    private static final String DATA_NOT_FOUND_ERROR_MSG = "Data not found in the system";
+    private static final String ERROR_DOC_LINK = "https://jersey.github.io/apidocs/latest/jersey/index.html";
     private static final String RESOURCE_URI = "reminders";
     private final Logger logger = Logger.getLogger("ReminderServiceImpl");
-    private ReminderDAO reminderDAO; // can be injected
 
-    public ReminderServiceImpl() {
-        reminderDAO = new ReminderDAO();
-    }
+    @Inject
+    private ReminderDAO reminderDAO;
 
     /**
      * Saves the created Reminder instance and updates the HATEOAS link for the resource
@@ -44,7 +51,7 @@ public class ReminderServiceImpl implements ReminderService {
      * @return the fetched Reminder instance
      */
     @Override
-    public Reminders getReminders(String dueDate, String status) {
+    public Reminders getReminders(String dueDate, String status) throws ApplicationException {
         Reminders reminders = new Reminders();
         final String filter = getFilterString(reminders, dueDate, status);
         reminders.getReminderList().stream()
@@ -59,8 +66,9 @@ public class ReminderServiceImpl implements ReminderService {
      * @return the fetched Reminder instance
      */
     @Override
-    public Reminder getReminder(String id) {
+    public Reminder getReminder(String id) throws ApplicationException {
         Reminder reminder = reminderDAO.selectById(id);
+        validateDAOResponse(reminder);
         reminder.setLinks(HateoasLinkUtil.getHateoasLink(RelValue.GET, RESOURCE_URI, "/" + id, ""));
         logger.info("Fetched Reminder:" + reminder);
         return reminder;
@@ -73,8 +81,9 @@ public class ReminderServiceImpl implements ReminderService {
      * @return the updated Reminder instance
      */
     @Override
-    public Reminder updateReminder(Reminder reminder, String id) {
+    public Reminder updateReminder(Reminder reminder, String id) throws ApplicationException {
         Reminder existingReminder = reminderDAO.selectById(id);
+        validateDAOResponse(existingReminder);
         existingReminder.setName(reminder.getName());
         existingReminder.setDescription(reminder.getDescription());
         existingReminder.setDueDate(reminder.getDueDate());
@@ -86,24 +95,40 @@ public class ReminderServiceImpl implements ReminderService {
     }
 
     /**
+     * Deletes a Reminder instance based on the given Id.
+     * @param id the primary key field used for search
+     *
+     */
+    @Override
+    public void deleteReminder(String id) throws ApplicationException {
+        Reminder reminder = reminderDAO.selectById(id);
+        validateDAOResponse(reminder);
+        reminderDAO.delete(id);
+        logger.info("Deleted Reminder for id:" + id);
+    }
+
+    /**
      * Filters the Reminder instances based on the filter fields.
      * @param reminders the list of Reminder instance filtered based on the filter fields
      * @param dueDate the filter field dueDate
      * @param status the filter field status
      * @return returns the final filter string
      */
-    private String getFilterString(Reminders reminders, String dueDate, String status) {
+    private String getFilterString(Reminders reminders, String dueDate, String status) throws ApplicationException {
         String filter = "";
+        List<Reminder> listReminder ;
         if(isSearchByDueDateAndStatus(dueDate, status)) {
-            reminders.setReminderList(reminderDAO.selectByDueDateAndStatus(dueDate, status));
+            listReminder = reminderDAO.selectByDueDateAndStatus(dueDate, status);
             filter = getFilterStringForDueDateAndStatus(dueDate, status);
         } else if(isSearchAll(dueDate, status)) {
-            reminders.setReminderList(reminderDAO.selectAll());
+            listReminder = reminderDAO.selectAll();
         } else {
             logger.info("filter:" + filter);
             filter = getFilterStringForDueDateOrStatus(dueDate, status);
-            reminders.setReminderList(reminderDAO.selectByDueDateOrStatus(dueDate, status));
+            listReminder = reminderDAO.selectByDueDateOrStatus(dueDate, status);
         }
+        validateDAOResponse(listReminder);
+        reminders.setReminderList(listReminder);
         return filter;
     }
 
@@ -155,6 +180,22 @@ public class ReminderServiceImpl implements ReminderService {
         String filter = "?" + paramName + "=" + paramValue;
         logger.info("filter:" + filter);
         return filter;
+    }
+
+    private void validateDAOResponse(List<Reminder> listReminder) throws ApplicationException {
+        if(listReminder == null || listReminder.isEmpty()) {
+            throw new ApplicationException(ExceptionStatusCode.DATA_NOT_FOUND.getStatus(), nextDebugId(), DATA_NOT_FOUND_ERROR_MSG, ERROR_DOC_LINK);
+        }
+    }
+
+    private void validateDAOResponse(Reminder reminder) throws ApplicationException {
+        if(reminder == null) {
+            throw new ApplicationException(ExceptionStatusCode.DATA_NOT_FOUND.getStatus(), nextDebugId() , DATA_NOT_FOUND_ERROR_MSG, ERROR_DOC_LINK);
+        }
+    }
+
+    private String nextDebugId() {
+        return new BigInteger(50, new SecureRandom()).toString(32);
     }
 }
 

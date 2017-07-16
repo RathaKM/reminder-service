@@ -3,7 +3,7 @@ package com.reminder.service.dao;
 import com.reminder.service.mapper.ReminderMapper;
 import com.reminder.service.model.Reminder;
 import com.reminder.service.test.util.TestUtil;
-import com.reminder.service.type.Status;
+import com.reminder.service.type.ReminderStatus;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mockito.Mock;
@@ -54,8 +54,8 @@ public class ReminderDAOTest extends PowerMockTestCase {
         List<Reminder> actualResponse = reminderDAO.selectAll();
         //assert response
         Assert.assertEquals(actualResponse.size(), 2);
-        Assert.assertEquals(actualResponse.get(0).getStatus(), Status.DONE);
-        Assert.assertEquals(actualResponse.get(1).getStatus(), Status.NOT_DONE);
+        Assert.assertEquals(actualResponse.get(0).getStatus(), ReminderStatus.DONE);
+        Assert.assertEquals(actualResponse.get(1).getStatus(), ReminderStatus.NOT_DONE);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ReminderDAOTest extends PowerMockTestCase {
         //assert response
         Assert.assertEquals(actualResponse.size(), 1);
         Assert.assertEquals(actualResponse.get(0).getName(), "Travel");
-        Assert.assertEquals(actualResponse.get(0).getStatus(), Status.DONE);
+        Assert.assertEquals(actualResponse.get(0).getStatus(), ReminderStatus.DONE);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ReminderDAOTest extends PowerMockTestCase {
         //assert response
         Assert.assertEquals(actualResponse.size(), 1);
         Assert.assertEquals(actualResponse.get(0).getName(), "Travel");
-        Assert.assertEquals(actualResponse.get(0).getStatus(), Status.DONE);
+        Assert.assertEquals(actualResponse.get(0).getStatus(), ReminderStatus.DONE);
     }
 
     @Test
@@ -103,7 +103,7 @@ public class ReminderDAOTest extends PowerMockTestCase {
         //assert response
         Assert.assertEquals(actualResponse.size(), 1);
         Assert.assertEquals(actualResponse.get(0).getName(), "Shopping");
-        Assert.assertEquals(actualResponse.get(0).getStatus(), Status.NOT_DONE);
+        Assert.assertEquals(actualResponse.get(0).getStatus(), ReminderStatus.NOT_DONE);
     }
 
     @Test
@@ -117,7 +117,7 @@ public class ReminderDAOTest extends PowerMockTestCase {
         Reminder actualResponse = reminderDAO.selectById(id);
         //assert response
         Assert.assertEquals(actualResponse.getName(), "Travel");
-        Assert.assertEquals(actualResponse.getStatus(), Status.DONE);
+        Assert.assertEquals(actualResponse.getStatus(), ReminderStatus.DONE);
     }
 
     @Test

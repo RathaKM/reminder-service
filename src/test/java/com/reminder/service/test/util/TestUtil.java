@@ -2,7 +2,7 @@ package com.reminder.service.test.util;
 
 import com.reminder.service.model.Reminder;
 import com.reminder.service.model.ResourceLink;
-import com.reminder.service.type.Status;
+import com.reminder.service.type.ReminderStatus;
 import com.reminder.service.util.HateoasLinkUtil;
 
 import java.util.ArrayList;
@@ -56,13 +56,13 @@ public class TestUtil {
         reminder1.setId(1);
         reminder1.setName("Travel");
         reminder1.setDueDate(123456789);
-        reminder1.setStatus(Status.DONE);
+        reminder1.setStatus(ReminderStatus.DONE);
         reminder1.setLinks(HateoasLinkUtil.getHateoasLinkForSearch(RESOURCE_URI, "/1", ""));
         listReminder.add(reminder1);
         reminder2.setId(2);
         reminder2.setName("Shopping");
         reminder2.setDueDate(987654321L);
-        reminder2.setStatus(Status.NOT_DONE);
+        reminder2.setStatus(ReminderStatus.NOT_DONE);
         List<ResourceLink> listResourceLink2 = HateoasLinkUtil.getHateoasLinkForSearch(RESOURCE_URI, "/2", "");
         listReminder.add(reminder2);
         return listReminder;
