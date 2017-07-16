@@ -2,6 +2,14 @@
 
 This repo contains working code for a __Reminder service (REST)__ and a simple UI for consuming the resources. 
 
+## Project Features
+
+- CRUD operations
+- Layered approach
+- Dependency Injection using Spring
+- Input data and Service validation
+- Usage of Persistence framework
+
 ## Technology Stack
 
 | Description               | Tool/Framework    |
@@ -13,6 +21,7 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 | App Server                | Tomcat 7.0.47     |
 | IDE                       | IntelliJ IDEA 14  |
 | Build tool                | Maven 3.0.5       |
+| Platform                  | iOS               |
 
 ## Application Design
 
@@ -26,6 +35,7 @@ This repo contains working code for a __Reminder service (REST)__ and a simple U
 | Update Reminder                       | /reminder-service/v1/reminders/id                     | PUT            |
 | Get A Reminder                        | /reminder-service/v1/reminders/id                     | GET            |
 | Get Reminders By DueDate and/or Status| /reminder-service/v1/reminders?dueDate=""&status=""   | GET            |
+| Delete A Reminder                     | /reminder-service/v1/reminders/id                     | DELETE         |   
 
 ## Project Setup
 
