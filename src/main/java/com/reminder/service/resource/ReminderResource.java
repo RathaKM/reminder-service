@@ -4,7 +4,6 @@ import com.reminder.service.exception.ApplicationException;
 import com.reminder.service.model.Reminder;
 import com.reminder.service.model.Reminders;
 import com.reminder.service.service.ReminderService;
-import com.reminder.service.service.ReminderServiceImpl;
 
 import javax.inject.Inject;
 import javax.validation.Valid;

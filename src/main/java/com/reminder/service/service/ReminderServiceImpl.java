@@ -9,7 +9,6 @@ import com.reminder.service.type.RelValue;
 import com.reminder.service.util.HateoasLinkUtil;
 
 import javax.inject.Inject;
-import javax.ws.rs.core.Response;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;

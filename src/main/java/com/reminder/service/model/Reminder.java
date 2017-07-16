@@ -3,9 +3,11 @@ package com.reminder.service.model;
 import com.reminder.service.type.HttpMethod;
 import com.reminder.service.type.RelValue;
 import com.reminder.service.type.ReminderStatus;
-import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
