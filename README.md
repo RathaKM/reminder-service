@@ -69,9 +69,15 @@ There are 3 ways you can consume these resources. They are using simple jquery b
 
 There is a simple jquery based UI implementation to consume these resources. 
 - Load the page using http://localhost:8080
-- Use the buttons by passing required inputs. Start with creating a Reminder as the DB is empty in the beginning. Please note that there are no validations in place as of now and hence make sure that you pass the right inputs
+- Use the buttons by passing required inputs. Start with creating a Reminder as the DB is empty in the beginning. 
+
+#### UI With Response 
 
 ![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/reminder_service_ui.png)
+
+#### UI with Validation
+
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/ui_with_validation.png)
 
 ### Using Postman
 
