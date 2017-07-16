@@ -29,8 +29,8 @@
                     success: function (data, status) {
                         $('#div1').html(JSON.stringify(data));
                     },
-                    error: function(){
-                        $('#div1').html("Call failed!");
+                    error: function(data, status){
+                        $('#div1').html(JSON.stringify(data.responseJSON));
                     }
                 });
             });
@@ -45,8 +45,8 @@
                     success: function (data, status) {
                         $('#div2').html(JSON.stringify(data));
                     },
-                    error: function(){
-                        $('#div2').html("Call failed!");
+                    error: function(data, status){
+                        $('#div2').html(JSON.stringify(data.responseJSON));
                     }
                 });
             });
@@ -61,8 +61,8 @@
                     success: function (data, status) {
                         $('#div3').html(JSON.stringify(data));
                     },
-                    error: function(){
-                        $('#div3').html("Call failed!");
+                    error: function(data, status){
+                        $('#div3').html(JSON.stringify(data.responseJSON));
                     }
                 });
             });
@@ -77,8 +77,24 @@
                     success: function (data, status) {
                         $('#div4').html(JSON.stringify(data));
                     },
-                    error: function(){
-                        $('#div4').html("Call failed!");
+                    error: function(data, status){
+                        $('#div4').html(JSON.stringify(data.responseJSON));
+                    }
+                });
+            });
+
+            $("#deleteReminder").click(function () {
+                $.ajax({
+                    url: ctxPath + "/reminder-service/v1/reminders/" + $("#txtId5").val(),
+                    type: "DELETE",
+                    data: {},
+                    cache: false,
+                    dataType: "json",
+                    success: function (data, status) {
+                        $('#div5').html("Content Deleted!");
+                    },
+                    error: function(data, status){
+                        $('#div5').html(JSON.stringify(data.responseJSON));
                     }
                 });
             });
@@ -96,6 +112,9 @@
     <li><button id="getAReminder"><b>Get Reminder ById </b></button> Id:<input type = text id="txtId3" value ="1"/> <br/> <br/> <div id="div3"></div> </li>
     <hr/><br/>
     <li><button id="getReminders"><b>Get Reminder ByStatus and DueDate </b></button><br/>  DueDate:<input type = text id="txtDueDate4" value ="123456789"/> Status:<input type = text id="txtStatus4" value ="DONE"/> <br/> <br/> <div id="div4"></div> </li>
+    <hr/><br/>
+    <li><button id="deleteReminder"><b>Delete Reminder</b></button> Id:<input type = text id="txtId5" value ="1"/><br/> <br/><div id="div5"></div> </li>
+
 </ul>
 </body>
 
