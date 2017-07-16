@@ -95,6 +95,41 @@ The resources can be consumed by using below Postman collection
 #### Filter Reminders By DueDate And Status
 ![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/filter_reminder_by_duedate_and_status.png)
 
+#### Delete A Reminder
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/delete_reminder.png)
+
+### Validation
+
+#### Create Reminder - Missing Input Field - 'name'
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/missing_name.png)
+
+#### Create Reminder - Invalid Input Field - 'name'
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/invalid_name.png)
+
+#### Create Reminder - Invalid Input Fields - 'dueDate' and 'status'
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/invalid_duedate_status.png)
+
+#### Get Reminder - Unavailable Data for the identifier
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/unavailable_item.png)
+
+#### Get Reminder - Invalid Identifier
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/invalid_identifier.png)
+
+#### Filter Reminder - Unavailable Data for the filters
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/data_unavailable_filter.png)
+
+#### Update Reminder - Invalid Input Fields - 'dueDate' and 'status'
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/update_invalid_input.png)
+
+#### Update Reminder - Invalid Input Fields and Invalid Identifier - 'dueDate' & 'status' and 'id'
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/update_invalid_input_id.png)
+
+#### Delete Reminder - Unavailable Data for the identifier
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/delete_data_not_available.png)
+
+#### Delete Reminder - Invalid Identifier
+![alt txt](https://github.com/RathaKM/reminder-service/blob/develop/src/main/resources/images/delete_invalid_id.png)
+
 
 ### Using Rest Client
 We can test the resources using Rest client API. These are available in the test folder [_RestClientTest.java_](../develop/src/test/java/com/reminder/service/integration/RestClientTest.java).
